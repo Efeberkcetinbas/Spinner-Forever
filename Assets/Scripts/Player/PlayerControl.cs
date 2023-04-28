@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private GameObject selected;
     [SerializeField] private GameObject increaseScorePrefab;
     [SerializeField] private SkinnedMeshRenderer spinnerMesh;
+    [SerializeField] private Transform Root;
 
     [SerializeField] private Transform pointPos;
 
@@ -32,6 +33,9 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private List<Material> materials=new List<Material>();
 
     private int matIndex;
+
+    private float rotIndex;
+
 
     [Header("Data's")]
     public PlayerData playerData;
@@ -64,7 +68,10 @@ public class PlayerControl : MonoBehaviour
         }
 
         isSelected=true;
+        EventManager.Broadcast(GameEvent.OnSelectedSpin);
         selected.SetActive(true);
+        //Animasyon yerine elle yapsak? BKNZ : 2.1
+        
         animator.SetBool("CanSpin",true);
         
     }
@@ -115,8 +122,26 @@ public class PlayerControl : MonoBehaviour
                 if(Mathf.Abs(lastPosition.x-firstPosition.x)>Mathf.Abs(lastPosition.y-firstPosition.y))
                 {
                     timer=playerData.MaxSpinTime;
-                    EventManager.Broadcast(GameEvent.OnIncreaseScore);
+                    EventManager.Broadcast(GameEvent.OnTargetSpin);
                     StartCoinMove();
+
+                    //!!!2.1
+                    /*if(lastPosition.x>firstPosition.x)
+                    {
+                        rotIndex+=5;
+                        if(rotIndex>360)
+                            rotIndex=0;
+
+                        Root.DORotate(new Vector3(270,rotIndex,0),0.1f,RotateMode.Fast);
+                    }
+                    else
+                    {
+                        rotIndex-=5;
+                        if(rotIndex<-360)
+                            rotIndex=0;
+
+                        Root.DORotate(new Vector3(270,rotIndex,0),0.1f,RotateMode.Fast);
+                    }*/
                 }
 
 

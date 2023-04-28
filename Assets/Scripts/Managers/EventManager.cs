@@ -5,8 +5,8 @@ using UnityEngine;
 
 public enum GameEvent
 {
-    OnIncreaseScore,
     OnTargetSpin,
+    OnSelectedSpin,
     OnUpdateUI,
     OnGameOver
 

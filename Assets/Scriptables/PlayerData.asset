@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   MaxSpinTime: 10
-  AllSpinners: []
+  MaxMoneyAmount: 1

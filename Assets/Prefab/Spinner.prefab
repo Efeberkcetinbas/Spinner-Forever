@@ -329,6 +329,7 @@ MonoBehaviour:
   selected: {fileID: 6063116571649256553}
   increaseScorePrefab: {fileID: 6328314671773535246, guid: 11ef0c5dadcc7894c8a562520c89e8c3, type: 3}
   spinnerMesh: {fileID: 514965782621573739}
+  Root: {fileID: 514965782618489673}
   pointPos: {fileID: 6895052899984197140}
   animator: {fileID: 810730729}
   ProgressImage: {fileID: 1340353095}
@@ -450,7 +451,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 514965782618398569}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
@@ -547,7 +548,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 514965782618398575}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

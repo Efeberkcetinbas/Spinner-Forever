@@ -15,13 +15,13 @@ public class GameManager : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnGameOver,OnGameOver);
-        EventManager.AddHandler(GameEvent.OnIncreaseScore,OnIncreaseScore);
+        EventManager.AddHandler(GameEvent.OnTargetSpin,OnIncreaseScore);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnGameOver,OnGameOver);
-        EventManager.RemoveHandler(GameEvent.OnIncreaseScore,OnIncreaseScore);
+        EventManager.RemoveHandler(GameEvent.OnTargetSpin,OnIncreaseScore);
     }
 
     void OnGameOver()
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     void ClearData()
     {
         gameData.score=0;
-        //gameData.isGameEnd=false;
+        gameData.isGameEnd=false;
         playerData.AllSpinners.Clear();
         playerData.AllSpawnPositions.Clear();
     }
