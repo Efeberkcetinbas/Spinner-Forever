@@ -14,8 +14,12 @@ public class PlayerControl : MonoBehaviour
 
     [SerializeField] private GameObject selected;
     [SerializeField] private GameObject increaseScorePrefab;
+    [SerializeField] private SkinnedMeshRenderer spinnerMesh;
 
     [SerializeField] private Transform pointPos;
+
+    [SerializeField] private Animator animator;
+
 
     private float dragDistance;
     private float timer;
@@ -23,7 +27,13 @@ public class PlayerControl : MonoBehaviour
     [Header("UI's")]
     public Image ProgressImage;
 
+    [Header("Randomness")]
+    //Shoptan almali olur
+    [SerializeField] private List<Material> materials=new List<Material>();
 
+    private int matIndex;
+
+    [Header("Data's")]
     public PlayerData playerData;
     public GameDataV gameData;
 
@@ -31,6 +41,7 @@ public class PlayerControl : MonoBehaviour
     {
         //Spin baslayarak donuyorlar. Sureleri Update de azaliyor
         timer=playerData.MaxSpinTime;
+        SetRandomMat();
     }
     private void Update() 
     {
@@ -49,13 +60,21 @@ public class PlayerControl : MonoBehaviour
         {
             playerData.AllSpinners[i].isSelected=false;
             playerData.AllSpinners[i].selected.SetActive(false);
+            playerData.AllSpinners[i].animator.SetBool("CanSpin",false);
         }
 
         isSelected=true;
         selected.SetActive(true);
+        animator.SetBool("CanSpin",true);
         
     }
 
+    private Material SetRandomMat()
+    {
+        matIndex=Random.Range(0,materials.Count);
+        spinnerMesh.material=materials[matIndex];
+        return spinnerMesh.material;
+    }
     private void StartTimer()
     {
         if(timer>0)
@@ -96,6 +115,7 @@ public class PlayerControl : MonoBehaviour
                 if(Mathf.Abs(lastPosition.x-firstPosition.x)>Mathf.Abs(lastPosition.y-firstPosition.y))
                 {
                     timer=playerData.MaxSpinTime;
+                    EventManager.Broadcast(GameEvent.OnIncreaseScore);
                     StartCoinMove();
                 }
 

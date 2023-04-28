@@ -6,4 +6,6 @@ using UnityEngine;
 public class GameDataV : ScriptableObject
 {
     public bool isGameEnd;
+
+    public int score;
 }

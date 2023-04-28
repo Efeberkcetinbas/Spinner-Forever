@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,25 +10,64 @@ public class GameManager : MonoBehaviour
 
     private void Start() 
     {
-        ResetGame();
+        ClearData();
     }
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnGameOver,OnGameOver);
+        EventManager.AddHandler(GameEvent.OnIncreaseScore,OnIncreaseScore);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnGameOver,OnGameOver);
+        EventManager.RemoveHandler(GameEvent.OnIncreaseScore,OnIncreaseScore);
     }
 
     void OnGameOver()
     {
         gameData.isGameEnd=true;
+        /*FailPanel.SetActive(true);
+        FailPanel.transform.DOScale(Vector3.one,1f).SetEase(ease);
+        playerData.playerCanMove=false;
+        gameData.isGameEnd=true;
+
+        if(gameData.score>gameData.highScore)
+        {
+            gameData.highScore=gameData.score;
+            PlayerPrefs.SetInt("highscore",gameData.highScore);
+        }
+
+        EventManager.Broadcast(GameEvent.OnUpdateGameOverUI);*/
     }
 
-    void ResetGame()
+
+    void OnIncreaseScore()
     {
+        //gameData.score += 50;
+        DOTween.To(GetScore,ChangeScore,gameData.score+playerData.MaxMoneyAmount,0.1f).OnUpdate(UpdateUI);
+    }
+
+    private int GetScore()
+    {
+        return gameData.score;
+    }
+
+    private void ChangeScore(int value)
+    {
+        gameData.score=value;
+    }
+
+    private void UpdateUI()
+    {
+        EventManager.Broadcast(GameEvent.OnUpdateUI);
+    }
+
+
+    void ClearData()
+    {
+        gameData.score=0;
+        //gameData.isGameEnd=false;
         playerData.AllSpinners.Clear();
         playerData.AllSpawnPositions.Clear();
     }
