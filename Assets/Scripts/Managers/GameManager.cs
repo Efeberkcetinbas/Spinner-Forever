@@ -68,7 +68,5 @@ public class GameManager : MonoBehaviour
     {
         gameData.score=0;
         gameData.isGameEnd=false;
-        playerData.AllSpinners.Clear();
-        playerData.AllSpawnPositions.Clear();
     }
 }

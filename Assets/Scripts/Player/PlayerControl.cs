@@ -68,6 +68,8 @@ public class PlayerControl : MonoBehaviour
         }
 
         isSelected=true;
+        Debug.Log(playerData.AllSpinners.Count);
+        
         EventManager.Broadcast(GameEvent.OnSelectedSpin);
         selected.SetActive(true);
         //Animasyon yerine elle yapsak? BKNZ : 2.1

@@ -14,6 +14,8 @@ public class PlayerManager : MonoBehaviour
     private void Start() 
     {
         SetSpawnPositionsToData();
+        playerData.AllSpinners.Clear();
+        playerData.AllSpawnPositions.Clear();
         CreateSpinner();
     }
 
