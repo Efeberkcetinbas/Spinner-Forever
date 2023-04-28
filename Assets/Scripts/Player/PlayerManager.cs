@@ -20,8 +20,8 @@ public class PlayerManager : MonoBehaviour
     public void CreateSpinner()
     {
         SetSpawnerPosition();
-        Instantiate(Spinner,SpawnPositions[index].position,SpawnPositions[index].transform.rotation);
-        playerData.AllSpinners.Add(Spinner);
+        PlayerControl spinner=Instantiate(Spinner,SpawnPositions[index].position,SpawnPositions[index].transform.rotation);
+        playerData.AllSpinners.Add(spinner);
         //Daha sonra bu position bos olan yerlere bakicak
     }
 

@@ -7,8 +7,11 @@ public class PlayerData : ScriptableObject
 {
     //Spinledigimde Max Olabilecek Spin Time
     public float MaxSpinTime=10;
+    //Spinledigimde bize kazandirdigi para miktari
+    public int MaxMoneyAmount=1;
 
-    public List<PlayerControl> AllSpinners=new List<PlayerControl>();
+
+    public readonly List<PlayerControl> AllSpinners=new List<PlayerControl>();
     public readonly List<Transform> AllSpawnPositions=new List<Transform>();
 
 
