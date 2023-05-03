@@ -33,7 +33,7 @@ public class CameraManager : MonoBehaviour
     void OnTargetSpin()
     {
         //ShakeIt();
-        ChangeFieldOfView(closeValue,0.1f);
+        //ChangeFieldOfView(closeValue,0.1f);
         ImpulseSource.GenerateImpulse();
     }
 

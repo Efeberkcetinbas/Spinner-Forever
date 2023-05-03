@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour
 
     [SerializeField] private Transform pointPos;
 
-    [SerializeField] private Animator animator;
+    //[SerializeField] private Animator animator;
 
 
     private float dragDistance;
@@ -64,7 +64,7 @@ public class PlayerControl : MonoBehaviour
         {
             playerData.AllSpinners[i].isSelected=false;
             playerData.AllSpinners[i].selected.SetActive(false);
-            playerData.AllSpinners[i].animator.SetBool("CanSpin",false);
+            //playerData.AllSpinners[i].animator.SetBool("CanSpin",false);
         }
 
         isSelected=true;
@@ -74,7 +74,7 @@ public class PlayerControl : MonoBehaviour
         selected.SetActive(true);
         //Animasyon yerine elle yapsak? BKNZ : 2.1
         
-        animator.SetBool("CanSpin",true);
+        //animator.SetBool("CanSpin",true);
         
     }
 
@@ -128,25 +128,11 @@ public class PlayerControl : MonoBehaviour
                     StartCoinMove();
 
                     //!!!2.1
-                    /*if(lastPosition.x>firstPosition.x)
-                    {
-                        rotIndex+=5;
-                        if(rotIndex>360)
-                            rotIndex=0;
-
-                        Root.DORotate(new Vector3(270,rotIndex,0),0.1f,RotateMode.Fast);
-                    }
+                    if(lastPosition.x>firstPosition.x)
+                        Root.DOLocalRotate(new Vector3(0, 360, 0), .2f, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear);
                     else
-                    {
-                        rotIndex-=5;
-                        if(rotIndex<-360)
-                            rotIndex=0;
-
-                        Root.DORotate(new Vector3(270,rotIndex,0),0.1f,RotateMode.Fast);
-                    }*/
+                        Root.DOLocalRotate(new Vector3(0, -360, 0), .2f, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear);
                 }
-
-
             }
         }
     }
