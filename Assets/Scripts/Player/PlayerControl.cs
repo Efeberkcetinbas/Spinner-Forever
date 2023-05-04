@@ -19,7 +19,8 @@ public class PlayerControl : MonoBehaviour
 
     [SerializeField] private Transform pointPos;
 
-    //[SerializeField] private Animator animator;
+    [SerializeField] private ParticleSystem electricParticle;
+
 
 
     private float dragDistance;
@@ -52,9 +53,13 @@ public class PlayerControl : MonoBehaviour
     {
         if(!gameData.isGameEnd)
         {
-            CheckMove();
+            if(playerData.CanSpin)
+                CheckMove();
+
             StartTimer();   
         }
+
+     
         
     }
 
@@ -127,7 +132,8 @@ public class PlayerControl : MonoBehaviour
                     timer=playerData.MaxSpinTime;
                     EventManager.Broadcast(GameEvent.OnTargetSpin);
                     StartCoinMove();
-
+                    StartCoroutine(SetSpinTrue());
+                    electricParticle.Play();
                     //!!!2.1
                     if(lastPosition.x>firstPosition.x)
                         Root.DOLocalRotate(new Vector3(0, 360, 0), .2f, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear);
@@ -135,14 +141,23 @@ public class PlayerControl : MonoBehaviour
                         Root.DOLocalRotate(new Vector3(0, -360, 0), .2f, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear);
                 }
             }
+
         }
+    }
+
+    private IEnumerator SetSpinTrue()
+    {
+        playerData.CanSpin=false;
+        yield return new WaitForSeconds(playerData.ClickSpin);
+        playerData.CanSpin=true;
     }
 
     private void StartCoinMove()
     {
         GameObject coin=Instantiate(increaseScorePrefab,pointPos.transform.position,increaseScorePrefab.transform.rotation);
         coin.transform.LookAt(Camera.main.transform);
-        coin.transform.DOLocalJump(coin.transform.localPosition,1,1,1,false);
+        var pos=coin.transform.localPosition;
+        coin.transform.DOLocalJump(new Vector3(pos.x,pos.y+2,pos.z),1,1,1,false);
         //coin.transform.DOScale(Vector3.zero,1.5f);
         coin.transform.GetChild(0).GetComponent<TextMeshPro>().text=" + " + playerData.MaxDamageAmount.ToString() + " xP";
         coin.transform.GetChild(0).GetComponent<TextMeshPro>().DOFade(0,1.5f).OnComplete(()=>coin.transform.GetChild(0).gameObject.SetActive(false));

@@ -9,6 +9,8 @@ public class BossDamageControl : MonoBehaviour
 
     public List<GameObject> Bosses=new List<GameObject>();
     
+    [SerializeField] private ParticleSystem DieParticle;
+    [SerializeField] private ParticleSystem[] electricParticles;
 
 
 
@@ -39,11 +41,16 @@ public class BossDamageControl : MonoBehaviour
     {
         bossData.BossHealth-=playerData.MaxDamageAmount;
         EventManager.Broadcast(GameEvent.OnBossUpdate);
-
+        for (int i = 0; i < electricParticles.Length; i++)
+        {
+            electricParticles[i].Play();
+        }
+        
         if(bossData.BossHealth<=0)
         {
             //index 1 arttirip asagidaki boss'a gec
             bossData.index++;
+            DieParticle.Play();
             EventManager.Broadcast(GameEvent.OnBossUpdate);
             EventManager.Broadcast(GameEvent.OnBossDie);
             Debug.Log("HOW MANY TIMES");

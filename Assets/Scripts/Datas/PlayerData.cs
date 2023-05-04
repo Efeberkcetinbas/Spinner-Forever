@@ -9,6 +9,8 @@ public class PlayerData : ScriptableObject
     public float MaxSpinTime=10;
     //Spinledigimde bize kazandirdigi para miktari
     public int MaxDamageAmount=5;
+    public float ClickSpin;
+    public bool CanSpin=true;
 
 
     public readonly List<PlayerControl> AllSpinners=new List<PlayerControl>();
