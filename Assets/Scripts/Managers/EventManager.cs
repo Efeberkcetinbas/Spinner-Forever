@@ -8,6 +8,8 @@ public enum GameEvent
     OnTargetSpin,
     OnSelectedSpin,
     OnUpdateUI,
+    OnBossUpdate,
+    OnBossDie,
     OnGameOver
 
 }

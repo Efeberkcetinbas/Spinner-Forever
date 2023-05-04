@@ -25,6 +25,7 @@ public class PlayerControl : MonoBehaviour
     private float dragDistance;
     private float timer;
 
+
     [Header("UI's")]
     public Image ProgressImage;
 
@@ -140,9 +141,10 @@ public class PlayerControl : MonoBehaviour
     private void StartCoinMove()
     {
         GameObject coin=Instantiate(increaseScorePrefab,pointPos.transform.position,increaseScorePrefab.transform.rotation);
+        coin.transform.LookAt(Camera.main.transform);
         coin.transform.DOLocalJump(coin.transform.localPosition,1,1,1,false);
         //coin.transform.DOScale(Vector3.zero,1.5f);
-        coin.transform.GetChild(0).GetComponent<TextMeshPro>().text=" + " + playerData.MaxMoneyAmount.ToString();
+        coin.transform.GetChild(0).GetComponent<TextMeshPro>().text=" + " + playerData.MaxDamageAmount.ToString() + " $";
         coin.transform.GetChild(0).GetComponent<TextMeshPro>().DOFade(0,1.5f).OnComplete(()=>coin.transform.GetChild(0).gameObject.SetActive(false));
         Destroy(coin,2);
     }

@@ -8,4 +8,6 @@ public class GameDataV : ScriptableObject
     public bool isGameEnd;
 
     public int score;
+
+    public float spinTimer;
 }

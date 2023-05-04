@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2e75a1e08ea0e4f981cf01f2ebb23e, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  MaxSpinTime: 10
-  MaxMoneyAmount: 1
+  MaxSpinTime: 20
+  MaxDamageAmount: 1

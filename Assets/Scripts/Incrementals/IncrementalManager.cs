@@ -11,6 +11,6 @@ public class IncrementalManager : MonoBehaviour
     {
         //Yeterli score'a sahipse
         increseEarning+=1;
-        playerData.MaxMoneyAmount+=increseEarning;
+        playerData.MaxDamageAmount+=increseEarning;
     }
 }

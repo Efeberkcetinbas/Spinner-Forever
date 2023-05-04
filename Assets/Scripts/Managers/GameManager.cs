@@ -44,8 +44,7 @@ public class GameManager : MonoBehaviour
 
     void OnIncreaseScore()
     {
-        //gameData.score += 50;
-        DOTween.To(GetScore,ChangeScore,gameData.score+playerData.MaxMoneyAmount,0.1f).OnUpdate(UpdateUI);
+        DOTween.To(GetScore,ChangeScore,gameData.score+playerData.MaxDamageAmount,.2f).OnUpdate(UpdateUI);
     }
 
     private int GetScore()
