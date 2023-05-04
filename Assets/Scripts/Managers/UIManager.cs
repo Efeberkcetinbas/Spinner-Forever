@@ -50,8 +50,5 @@ public class UIManager : MonoBehaviour
     {
         bossData.tempHealth=bossData.BossHealth;
     }
-
-    
-
     
 }

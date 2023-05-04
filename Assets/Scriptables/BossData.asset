@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171f8cf3ad6cea34ca9230da6789be9d, type: 3}
   m_Name: BossData
   m_EditorClassIdentifier: 
-  BossHealth: 20
+  BossHealth: 144
+  tempHealth: 160
   index: 0
-  BossName: Kokushibo
+  BossName: Vibe
