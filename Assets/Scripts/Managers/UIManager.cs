@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [Header("Boss Control")]
     public TextMeshProUGUI bossHealthText;
     public TextMeshProUGUI bossNameText;
+    public TextMeshPro bossLevelText;
     public Image bossProgressBar;
 
     public GameDataV gameData;
@@ -32,6 +33,11 @@ public class UIManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnBossDie,OnBossDie);
     }
 
+    private void Start() 
+    {
+        bossLevelText.SetText("Level " + (bossData.index+1).ToString());
+    }
+
     
     void OnUIUpdate()
     {
@@ -49,6 +55,7 @@ public class UIManager : MonoBehaviour
     void OnBossDie()
     {
         bossData.tempHealth=bossData.BossHealth;
+        bossLevelText.SetText("Level " + (bossData.index+1).ToString());
     }
     
 }

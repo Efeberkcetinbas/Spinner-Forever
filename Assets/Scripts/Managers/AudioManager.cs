@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
-    public AudioClip SpinSound,SelectedSound,GameOverSound;
+    public AudioClip SpinSound,SelectedSound,GameOverSound,AreaOpenSound,EnemyDeadSound;
 
     AudioSource musicSource,effectSource;
 
@@ -23,12 +23,16 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnGameOver,OnGameOver);
         EventManager.AddHandler(GameEvent.OnSelectedSpin,OnSelect);
         EventManager.AddHandler(GameEvent.OnTargetSpin,OnSpin);
+        EventManager.AddHandler(GameEvent.OnAreaOpen,OnAreaOpen);
+        EventManager.AddHandler(GameEvent.OnBossDie,OnBossDie);
     }
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnGameOver,OnGameOver);
         EventManager.RemoveHandler(GameEvent.OnSelectedSpin,OnSelect);
         EventManager.RemoveHandler(GameEvent.OnTargetSpin,OnSpin);
+        EventManager.RemoveHandler(GameEvent.OnAreaOpen,OnAreaOpen);
+        EventManager.RemoveHandler(GameEvent.OnBossDie,OnBossDie);
     }
 
     void OnSpin()
@@ -44,5 +48,15 @@ public class AudioManager : MonoBehaviour
     void OnGameOver()
     {
         effectSource.PlayOneShot(GameOverSound);
+    }
+
+    void OnAreaOpen()
+    {
+        effectSource.PlayOneShot(AreaOpenSound);
+    }
+
+    void OnBossDie()
+    {
+        effectSource.PlayOneShot(EnemyDeadSound);
     }
 }

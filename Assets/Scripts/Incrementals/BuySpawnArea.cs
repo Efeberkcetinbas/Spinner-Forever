@@ -11,6 +11,11 @@ public class BuySpawnArea : MonoBehaviour
     public List<Transform> spawnArea=new List<Transform>();
 
 
+    [SerializeField] private GameObject smokeParticle;
+
+    [SerializeField] private Transform spawnPos;
+
+
     public void BuyNewArea(int amount)
     {
         if(gameData.score>=amount)
@@ -20,9 +25,12 @@ public class BuySpawnArea : MonoBehaviour
             {
                 spawnArea[i].gameObject.SetActive(true);
                 playerManager.SpawnPositions.Add(spawnArea[i]);
+                EventManager.Broadcast(GameEvent.OnAreaOpen);
+                Instantiate(smokeParticle,spawnPos.position,spawnPos.rotation);
             }
             //Particle Effect
             Button.SetActive(false);
+            playerManager.canCreateSpinner=true;
 
 
         }

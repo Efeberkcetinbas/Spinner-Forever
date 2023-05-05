@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour
     public List<Transform> SpawnPositions=new List<Transform>();
 
     private int index=-1;
+
+    public bool canCreateSpinner=true;
     private void Start() 
     {
         SetSpawnPositionsToData();
@@ -22,15 +24,19 @@ public class PlayerManager : MonoBehaviour
     public void CreateSpinner()
     {
         SetSpawnerPosition();
-        PlayerControl spinner=Instantiate(Spinner,SpawnPositions[index].position,SpawnPositions[index].transform.rotation);
-        playerData.AllSpinners.Add(spinner);
-        //Daha sonra bu position bos olan yerlere bakicak
+        if(canCreateSpinner)
+        {
+            PlayerControl spinner=Instantiate(Spinner,SpawnPositions[index].position,SpawnPositions[index].transform.rotation);
+            playerData.AllSpinners.Add(spinner);
+            //Daha sonra bu position bos olan yerlere bakicak
+        }
+        
     }
 
     private void SetSpawnerPosition()
     {
         
-        if(index<SpawnPositions.Count)
+        if(index<SpawnPositions.Count-1)
         {
             index++;
         }
@@ -38,6 +44,7 @@ public class PlayerManager : MonoBehaviour
         else
         {
             Debug.Log("ITS FULL");
+            canCreateSpinner=false;
             //Pop-up cikar
             //Buy new Area 10*10 iken 11*11 olur
             

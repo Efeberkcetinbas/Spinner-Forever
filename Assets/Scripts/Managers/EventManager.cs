@@ -9,6 +9,7 @@ public enum GameEvent
     OnSelectedSpin,
     OnUpdateUI,
     OnBossUpdate,
+    OnAreaOpen,
     OnBossDie,
     OnGameOver
 
