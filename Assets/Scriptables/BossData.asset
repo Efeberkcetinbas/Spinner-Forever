@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171f8cf3ad6cea34ca9230da6789be9d, type: 3}
   m_Name: BossData
   m_EditorClassIdentifier: 
-  BossHealth: 55
-  tempHealth: 80
+  BossHealth: 1
+  tempHealth: 40
   index: 0
-  BossName: Guz
+  BossName: Gus

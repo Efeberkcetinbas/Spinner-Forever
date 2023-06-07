@@ -23,6 +23,7 @@ public class PlayerControl : MonoBehaviour
 
 
 
+
     private float dragDistance;
     private float timer;
 
@@ -134,6 +135,7 @@ public class PlayerControl : MonoBehaviour
                     StartCoinMove();
                     StartCoroutine(SetSpinTrue());
                     electricParticle.Play();
+                    //switch case
                     //!!!2.1
                     if(lastPosition.x>firstPosition.x)
                         Root.DOLocalRotate(new Vector3(0, 360, 0), .2f, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear);
@@ -143,6 +145,8 @@ public class PlayerControl : MonoBehaviour
             }
 
         }
+
+        
     }
 
     private IEnumerator SetSpinTrue()
